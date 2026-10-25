@@ -52,8 +52,9 @@ def load_dataset(path: str | Path) -> pd.DataFrame:
         raise ValueError("The 'charges' target must be non-negative.")
 
     for column in CATEGORICAL_FEATURES:
-        frame[column] = frame[column].astype("string").str.strip().str.lower()
-        frame[column] = frame[column].replace("", np.nan).astype(object)
+        normalized = frame[column].astype("string").str.strip().str.lower()
+        frame[column] = normalized.to_numpy(dtype=object, na_value=np.nan)
+        frame[column] = frame[column].replace("", np.nan)
 
     frame = frame.drop_duplicates().reset_index(drop=True)
     if len(frame) < 10:
