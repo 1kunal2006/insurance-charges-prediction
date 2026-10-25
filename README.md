@@ -1,66 +1,84 @@
 # Insurance Charges Prediction
 
-A data analysis and preprocessing project exploring the factors associated with medical insurance charges.
+**Author: Kunal**
 
 ## Project Overview
 
-The objective of this project is to explore an insurance dataset, understand patterns in insurance charges, clean and transform the data, engineer useful features, and perform statistical feature selection in preparation for machine learning.
+This project explores a medical insurance dataset to understand the factors associated with insurance charges. The notebook focuses on analyzing the data, preparing it for further use, and identifying relationships between different features and the target variable, `charges`.
+
+## Project Objectives
+
+- Explore the insurance dataset and understand its main characteristics.
+- Identify patterns and relationships between personal attributes and medical insurance charges.
+- Clean the data and check for missing values and duplicate records.
+- Prepare categorical and numerical features for analysis.
+- Create BMI categories as an example of feature engineering.
+- Explore feature relationships and select relevant features for future predictive modeling.
+
+## Dataset Description
+
+The dataset includes the following attributes:
+
+| Feature | Description |
+|---|---|
+| `age` | Age of the individual |
+| `sex` | Sex of the individual |
+| `bmi` | Body Mass Index |
+| `children` | Number of children or dependents covered |
+| `smoker` | Whether the individual smokes |
+| `region` | Residential region |
+| `charges` | Medical insurance charges (target variable) |
+
+Obtain the dataset from the source permitted for your use. If it is not included in this repository, upload the CSV to your notebook environment or update the file path in the notebook.
 
 ## Project Workflow
 
-- **Exploratory Data Analysis (EDA):** Examining the dataset, summary statistics, distributions, boxplots, and correlations.
-- **Data Cleaning:** Checking missing values, identifying duplicates, and removing duplicate records.
-- **Data Preprocessing:** Encoding categorical variables and standardizing selected numerical features.
-- **Feature Engineering:** Creating BMI categories from BMI values.
-- **Feature Selection:** Investigating feature relationships using Pearson correlation and chi-square tests.
+### 1. Exploratory Data Analysis (EDA)
+Review the dataset structure, summary statistics, feature distributions, boxplots, and correlations to understand the data and identify possible patterns.
 
-## Dataset
+### 2. Data Cleaning
+Inspect the data for missing values and duplicate records, and remove duplicate rows where appropriate.
 
-The dataset contains insurance-related attributes, including:
+### 3. Data Preprocessing
+Prepare categorical and numerical columns for analysis using encoding and scaling where appropriate.
 
-- Age
-- Sex
-- BMI (Body Mass Index)
-- Number of children
-- Smoking status
-- Residential region
-- Insurance charges (target variable)
+### 4. Feature Engineering
+Create BMI categories from the BMI feature to explore whether grouping BMI values helps reveal patterns in insurance charges.
 
-The dataset source and access instructions should be added here.
+### 5. Feature Selection
+Examine relationships between features using techniques such as Pearson correlation and chi-square tests, where appropriate for the feature types.
 
 ## Technologies Used
 
 - Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
+- Pandas and NumPy
+- Matplotlib and Seaborn
 - Scikit-learn
 - SciPy
 
 ## Repository Contents
 
-- `insurance_charges_prediction.ipynb` — Notebook containing the analysis, preprocessing, feature engineering, and feature selection.
+- `insurance.ipynb` — Jupyter/Google Colab notebook containing the project's exploratory analysis, preprocessing, feature engineering, and feature-selection work.
 
-## How to Run
+## How to Run the Project
 
-1. Download or clone this repository.
-2. Obtain the dataset from its permitted source.
-3. Open the notebook in Google Colab or Jupyter Notebook.
-4. Upload the CSV or update the dataset path in the loading cell.
-5. Run the notebook from beginning to end.
+1. Clone or download this repository.
+2. Open `insurance.ipynb` in Google Colab or Jupyter Notebook.
+3. Obtain the dataset and upload it to your notebook environment, or update the dataset path in the relevant notebook cell.
+4. Run the notebook cells in order.
+5. Review the visualizations and analysis outputs to understand the dataset and the factors associated with insurance charges.
 
-## Current Project Status
+## Current Scope
 
-This version focuses on exploratory data analysis, data preparation, feature engineering, and feature selection. Model training and prediction evaluation can be added as a subsequent stage.
+The project focuses on understanding and preparing the insurance data. It is intended to demonstrate the data-analysis workflow and provide a foundation for future predictive modeling; it does not claim to provide validated insurance-cost predictions.
 
 ## Future Improvements
 
 - Train regression models to predict insurance charges.
-- Compare model performance using suitable regression metrics.
-- Evaluate feature importance and prediction errors.
-- Improve the preprocessing workflow and validate model performance.
+- Compare models using appropriate regression metrics.
+- Investigate feature importance and prediction errors.
+- Improve preprocessing and evaluate model performance on unseen data.
 
-## License
+---
 
-Add an appropriate license if you intend to make the project available for reuse.
+**Created by Kunal**
