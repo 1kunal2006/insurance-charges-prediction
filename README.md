@@ -1,78 +1,84 @@
 # Insurance Charges Prediction
 
-An end-to-end machine-learning project for exploring and predicting medical insurance charges from demographic and lifestyle features. The original exploratory notebook is retained; a reproducible training pipeline and prediction CLI are provided alongside it.
+**Author: Kunal**
 
-## Project contents
+## Project Overview
 
-- `insurance.ipynb` — existing exploratory data analysis and regression notebook (originally created in Google Colab).
-- `insurance_model.py` — validated dataset loading, leakage-safe preprocessing, model candidates, evaluation, and prediction helpers.
-- `train_model.py` — trains and compares Linear Regression, Ridge Regression, and Random Forest models using cross-validation on the training split; evaluates the selected model on a held-out test split.
-- `predict.py` — predicts charges from a JSON applicant record using the saved pipeline.
-- `tests/` — automated tests for dataset validation, model training, and prediction.
-- `requirements.txt` — Python dependencies.
+This project explores a medical insurance dataset to understand the factors associated with insurance charges. The notebook focuses on analyzing the data, preparing it for further use, and identifying relationships between different features and the target variable, `charges`.
 
-## Dataset
+## Project Objectives
 
-The expected CSV has these columns: `age`, `sex`, `bmi`, `children`, `smoker`, `region`, and `charges`. Use a legally obtained copy of the commonly used medical insurance charges dataset and place it at `insurance.csv` in the project root, or pass another path with `--data`. The dataset is not committed to this repository.
+- Explore the insurance dataset and understand its main characteristics.
+- Identify patterns and relationships between personal attributes and medical insurance charges.
+- Clean the data and check for missing values and duplicate records.
+- Prepare categorical and numerical features for analysis.
+- Create BMI categories as an example of feature engineering.
+- Explore feature relationships and select relevant features for future predictive modeling.
 
-## Setup
+## Dataset Description
 
-Python 3.10+ is recommended.
+The dataset includes the following attributes:
 
-```bash
-python -m venv .venv
-# macOS/Linux
-source .venv/bin/activate
-# Windows PowerShell: .venv\Scripts\Activate.ps1
+| Feature | Description |
+|---|---|
+| `age` | Age of the individual |
+| `sex` | Sex of the individual |
+| `bmi` | Body Mass Index |
+| `children` | Number of children or dependents covered |
+| `smoker` | Whether the individual smokes |
+| `region` | Residential region |
+| `charges` | Medical insurance charges (target variable) |
 
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-```
+Obtain the dataset from the source permitted for your use. If it is not included in this repository, upload the CSV to your notebook environment or update the file path in the notebook.
 
-## Train and evaluate
+## Project Workflow
 
-```bash
-python train_model.py --data insurance.csv
-```
+### 1. Exploratory Data Analysis (EDA)
+Review the dataset structure, summary statistics, feature distributions, boxplots, and correlations to understand the data and identify possible patterns.
 
-This writes the fitted preprocessing-plus-model pipeline to `artifacts/insurance_model.joblib` and evaluation details to `artifacts/metrics.json`. The leaderboard reports mean and standard deviation of cross-validated RMSE; lower RMSE is better. Test metrics include MAE, RMSE, and R². Results are computed when you run the script and are not hard-coded into this README.
+### 2. Data Cleaning
+Inspect the data for missing values and duplicate records, and remove duplicate rows where appropriate.
 
-To use another dataset path or output path:
+### 3. Data Preprocessing
+Prepare categorical and numerical columns for analysis using encoding and scaling where appropriate.
 
-```bash
-python train_model.py --data /path/to/insurance.csv \
-  --model-out artifacts/model.joblib \
-  --metrics-out artifacts/metrics.json
-```
+### 4. Feature Engineering
+Create BMI categories from the BMI feature to explore whether grouping BMI values helps reveal patterns in insurance charges.
 
-## Predict for an applicant
+### 5. Feature Selection
+Examine relationships between features using techniques such as Pearson correlation and chi-square tests, where appropriate for the feature types.
 
-Train the model first, then provide all six input features as JSON:
+## Technologies Used
 
-```bash
-python predict.py --input '{"age": 35, "sex": "female", "bmi": 27.5, "children": 1, "smoker": "no", "region": "southwest"}'
-```
+- Python
+- Pandas and NumPy
+- Matplotlib and Seaborn
+- Scikit-learn
+- SciPy
 
-The output is a JSON object containing `predicted_charges`. The prediction is an estimate from the public training dataset, not an insurance quote or a guarantee of actual costs.
+## Repository Contents
 
-## Run tests
+- `insurance.ipynb` — Jupyter/Google Colab notebook containing the project's exploratory analysis, preprocessing, feature engineering, and feature-selection work.
 
-```bash
-pytest -q
-```
+## How to Run the Project
 
-## Modeling and data-quality notes
+1. Clone or download this repository.
+2. Open `insurance.ipynb` in Google Colab or Jupyter Notebook.
+3. Obtain the dataset and upload it to your notebook environment, or update the dataset path in the relevant notebook cell.
+4. Run the notebook cells in order.
+5. Review the visualizations and analysis outputs to understand the dataset and the factors associated with insurance charges.
 
-- Numeric imputation/scaling and categorical imputation/one-hot encoding are fitted inside an sklearn pipeline, so preprocessing is learned only from each training fold.
-- Unknown categorical levels at prediction time are tolerated by one-hot encoding.
-- The held-out test split is not used to select the model.
-- Duplicate rows are removed and rows with missing target values are excluded. Missing feature values are imputed by the pipeline.
-- This small, public dataset is useful for learning and demonstration. It is not sufficient to establish actuarial accuracy, fairness, or suitability for real underwriting decisions.
+## Current Scope
 
-## Notebook
+The project focuses on understanding and preparing the insurance data. It is intended to demonstrate the data-analysis workflow and provide a foundation for future predictive modeling; it does not claim to provide validated insurance-cost predictions.
 
-The notebook currently contains Google Colab-specific data-loading assumptions and saved cell outputs. For reproducible runs, use the CLI workflow above; update the notebook's CSV path or upload the CSV when running it in Colab/Jupyter.
+## Future Improvements
 
-## License
+- Train regression models to predict insurance charges.
+- Compare models using appropriate regression metrics.
+- Investigate feature importance and prediction errors.
+- Improve preprocessing and evaluate model performance on unseen data.
 
-No license is currently specified. Add an appropriate license before granting reuse rights.
+---
+
+**Created by Kunal**
