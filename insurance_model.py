@@ -53,7 +53,7 @@ def load_dataset(path: str | Path) -> pd.DataFrame:
 
     for column in CATEGORICAL_FEATURES:
         frame[column] = frame[column].astype("string").str.strip().str.lower()
-        frame[column] = frame[column].replace("", pd.NA).astype(object)
+        frame[column] = frame[column].replace("", np.nan).astype(object)
 
     frame = frame.drop_duplicates().reset_index(drop=True)
     if len(frame) < 10:
@@ -108,6 +108,8 @@ def train_and_evaluate(
     """Select a model by training-only cross-validation, then evaluate once."""
     if not 0.1 <= test_size <= 0.4:
         raise ValueError("test_size must be between 0.1 and 0.4.")
+    if cv_splits < 2:
+        raise ValueError("cv_splits must be at least 2.")
     if len(frame) < max(10, cv_splits * 2):
         raise ValueError(f"At least {max(10, cv_splits * 2)} rows are needed.")
 
